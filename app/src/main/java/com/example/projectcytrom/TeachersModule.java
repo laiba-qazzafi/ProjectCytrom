@@ -1,14 +1,14 @@
 package com.example.projectcytrom;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainModules extends AppCompatActivity {
+import android.os.Bundle;
+
+public class TeachersModule extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modules);
+        setContentView(R.layout.activity_teachers_module);
     }
 }

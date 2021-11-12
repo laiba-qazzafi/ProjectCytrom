@@ -15,6 +15,7 @@ public class Login extends AppCompatActivity {
     EditText e1, e2;
     TextView t;
     Button button;
+    int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +47,28 @@ public class Login extends AppCompatActivity {
         String password = e2.getText().toString().trim();
 //        e2.getText().toString().trim().equals(password);
 
-        if(username=="admin" && password.equals("cytrom")){
-            Intent intent = new Intent(Login.this, MainActivity2.class);
-            startActivity(intent);
+        if(flag==0)
+        {
+            if(username.equals("admin") && password.equals("cytrom")){
+                Intent intent = new Intent(Login.this, MainActivity2.class);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(Login.this, "Invalid Username or Password!", Toast.LENGTH_SHORT).show();
+            }
+
         }
         else {
-            Toast.makeText(Login.this, "Invalid Username or Password!", Toast.LENGTH_SHORT).show();
+
+            if(username.equals("admin") && password.equals("cytrom")){
+                Intent intent = new Intent(Login.this, TeachersModule.class);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(Login.this, "Invalid Username or Password!", Toast.LENGTH_SHORT).show();
+            }
         }
+
+
     }
 }
