@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ProjectCytrom</string>
+    <string name="forget_password">
+        <a href="">Forget Password?</a>
+    </string>
+    <string name="signup">
+        <a href="">Sign Up</a>
+    </string>
+</resources>
