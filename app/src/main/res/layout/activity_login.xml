@@ -111,8 +111,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Or BIBI KIa hal hyn"
-                android:layout_marginTop="250dp"/>
+                android:layout_marginTop="250dp"
+                android:text="Or BIBI KIa hal hyn" />
 
         </RelativeLayout>
     </RelativeLayout>
