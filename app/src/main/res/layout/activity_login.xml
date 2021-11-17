@@ -27,8 +27,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <EditText
                 android:id="@+id/email"
@@ -43,9 +42,9 @@
                 android:drawableTint="@color/gray"
                 android:hint="Email/Username"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/brand"
                 android:minHeight="48dp"
                 android:padding="10dp"
+                android:textColor="@color/brand"
                 android:textColorHint="@color/brand" />
 
             <EditText
@@ -62,18 +61,18 @@
                 android:drawableTint="@color/gray"
                 android:hint="Enter your Password"
                 android:inputType="textPassword"
-                android:textColor="@color/brand"
                 android:minHeight="48dp"
                 android:padding="10dp"
+                android:textColor="@color/brand"
                 android:textColorHint="@color/brand" />
+
             <TextView
                 android:id="@+id/t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/forget_password"
                 android:layout_below="@id/password"
                 android:layout_marginLeft="200dp"
-                />
+                android:text="@string/forget_password" />
 
             <Button
                 android:id="@+id/loginButton"
@@ -84,30 +83,30 @@
                 android:layout_marginTop="60dp"
                 android:layout_marginRight="30dp"
                 android:backgroundTint="@color/gray"
-                android:text="Sign In"
                 android:padding="20dp"
+                android:text="Sign In"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
-                app:cornerRadius="10dp"
-                />
+                app:cornerRadius="10dp" />
+
             <TextView
                 android:id="@+id/t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account? "
-                android:textColor="@color/white"
-                android:layout_marginTop="20dp"
                 android:layout_below="@id/loginButton"
                 android:layout_marginLeft="70dp"
-                />
+                android:layout_marginTop="20dp"
+                android:text="Don't have an account? "
+                android:textColor="@color/white" />
+
             <TextView
                 android:id="@+id/singupPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/signup"
                 android:layout_below="@id/loginButton"
-                android:layout_toRightOf="@id/t2"
                 android:layout_marginTop="20dp"
-                />
+                android:layout_toRightOf="@id/t2"
+                android:text="@string/signup" />
 
         </RelativeLayout>
     </RelativeLayout>
