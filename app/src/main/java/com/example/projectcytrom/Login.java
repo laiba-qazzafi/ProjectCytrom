@@ -4,26 +4,35 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Login extends AppCompatActivity {
 
-    EditText e1, e2;
+    private EditText email;
+    private EditText password;
+    private Button bat1;
+    private FirebaseAuth auth;
     TextView t;
-    Button button;
-    int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        email=findViewById(R.id.email);
+        password=findViewById(R.id.password);
+        bat1=findViewById(R.id.loginButton);
+        auth=FirebaseAuth.getInstance();
 
-        button = (Button) findViewById(R.id.loginButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        bat1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 login();
@@ -41,34 +50,37 @@ public class Login extends AppCompatActivity {
     }
     public void login()
     {
-        e1= (EditText) findViewById(R.id.email);
-        String username= e1.getText().toString();
-        e2 =(EditText) findViewById(R.id.password);
-        String password = e2.getText().toString().trim();
-//        e2.getText().toString().trim().equals(password);
+        String text_email=email.getText().toString();
+        String text_password=password.getText().toString();
 
-        if(flag==0)
+        if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password))
         {
-            if(username.equals("admin") && password.equals("cytrom")){
+            Toast.makeText(Login.this, "Field is Empty", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            loginuser(text_email,text_password);
+        }
+
+    }
+    private void loginuser(String email, String password)
+    {
+        auth.signInWithEmailAndPassword(email,password).addOnSuccessListener(Login.this, new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+
+                Toast.makeText(Login.this, "Login SuccessFull", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Login.this, MainActivity2.class);
                 startActivity(intent);
-            }
-            else {
-                Toast.makeText(Login.this, "Invalid Username or Password!", Toast.LENGTH_SHORT).show();
-            }
 
-        }
-        else {
+            }
+        });
+    }
 
-            if(username.equals("admin") && password.equals("cytrom")){
-                Intent intent = new Intent(Login.this, TeachersModule.class);
-                startActivity(intent);
-            }
-            else {
-                Toast.makeText(Login.this, "Invalid Username or Password!", Toast.LENGTH_SHORT).show();
-            }
-        }
+
+
+
+
 
 
     }
-}
