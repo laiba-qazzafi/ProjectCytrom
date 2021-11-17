@@ -84,7 +84,7 @@
                 android:layout_marginRight="30dp"
                 android:backgroundTint="@color/gray"
                 android:padding="20dp"
-                android:text="Sign In"
+                android:text="Me hun Khan"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:cornerRadius="10dp" />
