@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +44,15 @@ public class SignUp extends AppCompatActivity {
         button=findViewById(R.id.button);
         auth=FirebaseAuth.getInstance();
 
+
+        TextView t = (TextView) findViewById(R.id.loginPage);
+        t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SignUp.this, Login.class);
+                startActivity(i);
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

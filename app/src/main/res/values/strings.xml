@@ -6,4 +6,7 @@
     <string name="signup">
         <a href="">Sign Up</a>
     </string>
+    <string name="login">
+        <a href="">Login</a>
+    </string>
 </resources>
