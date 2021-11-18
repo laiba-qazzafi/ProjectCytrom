@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "263579296563",
+    "project_id": "projectcytrom",
+    "storage_bucket": "projectcytrom.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263579296563:android:d89d5af830e86ffc899446",
+        "android_client_info": {
+          "package_name": "com.example.projectcytrom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263579296563-nqdlpuv8ih1bpi3eeos3ftie05nk7ris.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7TP5doSfFEMHcMVd8gGBA1c84zuT9OI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263579296563-nqdlpuv8ih1bpi3eeos3ftie05nk7ris.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
