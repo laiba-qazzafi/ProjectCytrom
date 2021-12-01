@@ -54,7 +54,8 @@
         android:layout_marginTop="60dp"
         android:layout_marginRight="10dp"
         android:backgroundTint="@color/black"
-        android:queryHint="Search" />
+        android:queryHint="Search"
+        android:layout_below="@id/header"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/teachersRecyclerView"
@@ -62,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/teacherSearchView"
         android:layout_marginTop="20dp"
+
         />
 
 

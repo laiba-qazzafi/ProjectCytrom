@@ -35,7 +35,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
 
-        email=findViewById(R.id.email);
+        email= findViewById(R.id.email);
         password=findViewById(R.id.password);
         name=findViewById(R.id.name);
         roll=findViewById(R.id.roll);
@@ -51,7 +51,7 @@ public class SignUp extends AppCompatActivity {
                 m.put("name",name.getText().toString());
                 m.put("roll",roll.getText().toString());
                 m.put("section",section.getText().toString());
-                FirebaseDatabase.getInstance().getReference().child("student").setValue(m);
+                FirebaseDatabase.getInstance().getReference().child("student").push().setValue(m);
 
                 String text_email=email.getText().toString().trim();
                 String text_password=password.getText().toString().trim();

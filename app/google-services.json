@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "263579296563",
-    "project_id": "projectcytrom",
-    "storage_bucket": "projectcytrom.appspot.com"
+    "project_number": "404236223799",
+    "firebase_url": "https://projectcytrom-c2d06-default-rtdb.firebaseio.com",
+    "project_id": "projectcytrom-c2d06",
+    "storage_bucket": "projectcytrom-c2d06.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:263579296563:android:d89d5af830e86ffc899446",
+        "mobilesdk_app_id": "1:404236223799:android:505433f26a01696a2e86b2",
         "android_client_info": {
           "package_name": "com.example.projectcytrom"
         }
       },
       "oauth_client": [
         {
-          "client_id": "263579296563-nqdlpuv8ih1bpi3eeos3ftie05nk7ris.apps.googleusercontent.com",
+          "client_id": "404236223799-jf7301i6ds0v1qbm32dagf6dhj8f3orp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB7TP5doSfFEMHcMVd8gGBA1c84zuT9OI8"
+          "current_key": "AIzaSyDMk8BfnN2yJD8TSCl9itQmGdJ2g4kCAXw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "263579296563-nqdlpuv8ih1bpi3eeos3ftie05nk7ris.apps.googleusercontent.com",
+              "client_id": "404236223799-jf7301i6ds0v1qbm32dagf6dhj8f3orp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
