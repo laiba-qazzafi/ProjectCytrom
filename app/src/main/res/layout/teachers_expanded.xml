@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#ffffff"
-    android:weightSum="100">
+    android:weightSum="100"
+    >
    <RelativeLayout
        android:id="@+id/firstContainer"
        android:layout_width="match_parent"
@@ -73,6 +74,38 @@
        </androidx.cardview.widget.CardView>
    </RelativeLayout>
 
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Subject"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColorHint="@android:color/black"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/black"
+        />
+
+    <EditText
+        android:id="@+id/msg"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:hint="Message"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:backgroundTint="@color/black"
+
+
+        />
+
     <Button
         android:id="@+id/btnAvailable"
         android:layout_width="wrap_content"
@@ -82,6 +115,7 @@
         android:padding="10dp"
         android:layout_margin="10dp"
         app:cornerRadius="10dp"
+        android:textColor="@android:color/black"
         />
 
     <FrameLayout

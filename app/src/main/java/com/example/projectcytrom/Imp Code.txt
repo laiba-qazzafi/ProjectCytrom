@@ -1,0 +1,41 @@
+
+// for sending notification to all 
+
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+
+
+
+
+
+ // fcm settings for perticular user
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (task.isSuccessful()) {
+                          String  token = Objects.requireNonNull(task.getResult()).getToken();
+
+                        }
+
+                    }
+                });
+
+
+
+// menifest setting
+
+  <service
+            android:name=".FirebaseMessagingService"
+            android:permission="TODO"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
+// build gradle
+
+
+    implementation 'com.android.volley:volley:1.1.1'

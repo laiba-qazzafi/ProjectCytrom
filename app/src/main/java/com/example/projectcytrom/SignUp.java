@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,7 +36,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
 
-        email= findViewById(R.id.email);
+        email=findViewById(R.id.email);
         password=findViewById(R.id.password);
         name=findViewById(R.id.name);
         roll=findViewById(R.id.roll);
@@ -44,6 +45,15 @@ public class SignUp extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
 
 
+        TextView t = (TextView) findViewById(R.id.loginPage);
+        t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SignUp.this, Login.class);
+                startActivity(i);
+            }
+        });
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +61,7 @@ public class SignUp extends AppCompatActivity {
                 m.put("name",name.getText().toString());
                 m.put("roll",roll.getText().toString());
                 m.put("section",section.getText().toString());
-                FirebaseDatabase.getInstance().getReference().child("student").push().setValue(m);
+                FirebaseDatabase.getInstance().getReference().child("student").setValue(m);
 
                 String text_email=email.getText().toString().trim();
                 String text_password=password.getText().toString().trim();
