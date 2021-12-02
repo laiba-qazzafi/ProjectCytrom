@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "403065651686",
+    "project_id": "teacher-dd8bb",
+    "storage_bucket": "teacher-dd8bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403065651686:android:9a0b63b92a87292513d627",
+        "android_client_info": {
+          "package_name": "com.example.projectcytrom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403065651686-o45k9mhkf700otjvsc1l44rh2f2jtapj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPxgc2lAG34FafuOa4jgTmXrSDrIBU4aE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403065651686-o45k9mhkf700otjvsc1l44rh2f2jtapj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
