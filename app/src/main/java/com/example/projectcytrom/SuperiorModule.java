@@ -28,7 +28,8 @@ public class SuperiorModule extends AppCompatActivity {
         faculty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SuperiorModule.this, Login.class);
+                Intent intent = new Intent(SuperiorModule.this, TeachersSignup.class);
+                startActivity(intent);
             }
         });
     }
