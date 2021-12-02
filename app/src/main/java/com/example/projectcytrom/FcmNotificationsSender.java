@@ -28,7 +28,7 @@ public class FcmNotificationsSender  {
 
     private RequestQueue requestQueue;
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
-    private final String fcmServerKey ="AAAAPV6M4zM:APA91bEzmrrSkLhxgm06CabOOov1SxskDPJ4zCZACyrud9Tl-1WTlpo-HDNhCbfL2udc7XdWOmvgIk4-j_BVxImFQrH2-sfnYcBRBOKA4RJJu6N4FhOEOxTTdkEXehueOp6jvIgL7NYJ";
+    private final String fcmServerKey ="AAAAzgDeJKo:APA91bESMnJISrSZyZ-mawruuQ7ylmcxJ9j8zJUAqTy1uFqKc1kcd1aVjPsVQ9_sCGrQ4BxBHXk98FhznP-_JS1aYQXiOO3v3dI8A2aHWBwbAhWOAMncrpzNC0F9P3OjF8_rElTYXQRu";
 
     public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext, Activity mActivity) {
         this.userFcmToken = userFcmToken;
@@ -60,13 +60,11 @@ public class FcmNotificationsSender  {
                 @Override
                 public void onResponse(JSONObject response) {
 
-                    // code run is got response
 
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    // code run is got error
 
                 }
             }) {
