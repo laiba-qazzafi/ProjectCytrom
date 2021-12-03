@@ -7,9 +7,6 @@
     tools:context=".SignUp"
     android:background="@color/white">
 
-
-
-
     <RelativeLayout
         android:id="@+id/parentLayout"
         android:layout_width="match_parent"

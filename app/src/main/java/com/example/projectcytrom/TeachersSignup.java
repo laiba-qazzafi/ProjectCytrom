@@ -48,6 +48,8 @@ public class TeachersSignup extends AppCompatActivity {
     private Button button, browse;
     private FirebaseAuth auth;
 
+    ProgressDialog dialog;
+
     Uri filepath;
     ImageView img;
     Bitmap bitmap;
@@ -70,6 +72,7 @@ public class TeachersSignup extends AppCompatActivity {
         ph=findViewById(R.id.ph);
         button=findViewById(R.id.button);
         browse=findViewById(R.id.browse);
+
         auth=FirebaseAuth.getInstance();
 
         browse.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +100,7 @@ public class TeachersSignup extends AppCompatActivity {
 //                }).check();
 
             Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_GET_CONTENT);
+            intent.setAction(Intent.ACTION_PICK);
             intent.setType("image/*");
             startActivityForResult(intent, 1);
             }
@@ -122,11 +125,7 @@ public class TeachersSignup extends AppCompatActivity {
                     Toast.makeText(TeachersSignup.this, "Password must be of 6 characters", Toast.LENGTH_SHORT).show();
                 }else
                 {
-
-
-                    uploadfirebase();
-
-
+                    uploadToFirebase();
                 }
             }
         });
@@ -138,6 +137,57 @@ public class TeachersSignup extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+    }
+
+    private void uploadToFirebase() {
+        dialog = new ProgressDialog(TeachersSignup.this);
+        dialog.setTitle("File Uploader");
+        dialog.show();
+
+        String txtName = name.getText().toString().trim();
+        String txtDept = department.getText().toString().trim();
+        String txtPh = ph.getText().toString().trim();
+        String txtEmail = email.getText().toString().trim();
+        String txtPass = password.getText().toString().trim();
+
+
+
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference uploader = storage.getReference("Image"+new Random().nextInt(50));
+
+        uploader.putFile(filepath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        dialog.dismiss();
+
+                        FirebaseDatabase db = FirebaseDatabase.getInstance();
+                        DatabaseReference root = db.getReference("teachers");
+
+                        dataholder obj = new dataholder(txtName, txtPh, txtDept, txtEmail, uri.toString());
+                        root.child(txtName).setValue(obj);
+
+                        signupuser(txtEmail, txtPass);
+
+
+                    }
+                });
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                long percent = (100*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
+                dialog.setMessage("Uploaded : "+(int) percent + "%");
+            }
+        });
+
+
 
 
     }
@@ -176,7 +226,7 @@ public class TeachersSignup extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
 
-        if (requestCode==1&&resultCode==RESULT_OK)
+        if (requestCode==1 && resultCode==RESULT_OK)
         {
             filepath=data.getData();
             try {
@@ -194,49 +244,10 @@ public class TeachersSignup extends AppCompatActivity {
 
     }
 
-    private void uploadfirebase()
-    {
-        ProgressDialog dialog=new ProgressDialog(this);
-        dialog.setTitle("File Upload");
-        dialog.show();
 
-        FirebaseStorage storage=FirebaseStorage.getInstance();
-        StorageReference uploader=storage.getReference("Image1"+new Random().nextInt(50));
-        uploader.putFile(filepath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
 
-                        dialog.dismiss();
 
-                        String text_email=email.getText().toString().trim();
-                        String text_password=password.getText().toString().trim();
-                        String text_name=name.getText().toString().trim();
-                        String text_dep=department.getText().toString().trim();
-                        String text_ph=ph.getText().toString().trim();
-
-                        FirebaseDatabase db=FirebaseDatabase.getInstance();
-                        DatabaseReference root=db.getReference("teachers");
-                        dataholder  obj=new dataholder(text_name,text_ph,text_dep,text_email,uri.toString());
-                        root.child(email.getText().toString()).setValue(obj);
-
-                        signupuser(text_email,text_password);
-
-                    }
-                });
-
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                long percent=(100*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
-                dialog.setMessage("uploaded: "+(int)percent+"%");
-            }
-        });
-    }
     private void signupuser(String text_email, String text_password) {
 
         auth.createUserWithEmailAndPassword(text_email,text_password).addOnCompleteListener(TeachersSignup.this, new OnCompleteListener<AuthResult>()
@@ -245,7 +256,7 @@ public class TeachersSignup extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
-                    Toast.makeText(TeachersSignup.this, "Register Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TeachersSignup.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(TeachersSignup.this ,TeachersLogin.class));
                     finish();
                 }else

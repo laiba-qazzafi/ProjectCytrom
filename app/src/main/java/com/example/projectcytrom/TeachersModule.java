@@ -19,77 +19,28 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class TeachersModule extends AppCompatActivity {
 
-    private EditText email;
-    private EditText password;
-    private Button bat1;
-    private FirebaseAuth auth;
-    TextView t;
+    Button button;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachers_module);
 
-        email=findViewById(R.id.email);
-        password=findViewById(R.id.password);
-        bat1=findViewById(R.id.loginButton);
-        auth= FirebaseAuth.getInstance();
+        button = (Button) findViewById(R.id.bLogout);
+        textView = (TextView) findViewById(R.id.textEmail);
 
-        bat1.setOnClickListener(new View.OnClickListener() {
+        textView.setText(getIntent().getStringExtra("email").toString());
+
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(TeachersModule.this, TeachersLogin.class);
+                startActivity(intent);
+                finish();
             }
         });
-
-        t = (TextView) findViewById(R.id.singupPage);
-        t.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(TeachersModule.this, SignUp.class);
-                startActivity(i);
-            }
-        });
-    }
-    public void login()
-    {
-        String text_email=email.getText().toString();
-        String text_password=password.getText().toString();
-
-        if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password))
-        {
-            Toast.makeText(TeachersModule.this, "Field is Empty", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            loginuser(text_email,text_password);
-        }
-
-    }
-    private void loginuser(String email, String password)
-    {
-        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(TeachersModule.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (!task.isSuccessful())
-                {
-                    Toast.makeText(TeachersModule.this, "Incorrect Email Or Password", Toast.LENGTH_SHORT).show();
-                }else if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
-                {
-                    Toast.makeText(TeachersModule.this, "Field is empty", Toast.LENGTH_SHORT).show();
-
-                }else {
-                    Toast.makeText(TeachersModule.this, "Login SuccessFull", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(TeachersModule.this, MainActivity2.class);
-                    startActivity(intent);
-
-                }
-            }
-
-
-        });
-
 
     }
 }
