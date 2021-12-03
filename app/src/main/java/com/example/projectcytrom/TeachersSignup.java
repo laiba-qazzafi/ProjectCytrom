@@ -12,9 +12,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,9 +42,10 @@ import java.util.Random;
 
 public class TeachersSignup extends AppCompatActivity {
 
+    TextView textView;
 
     private EditText email, password, name, department, ph;
-    private Button button;
+    private Button button, browse;
     private FirebaseAuth auth;
 
     Uri filepath;
@@ -56,6 +59,7 @@ public class TeachersSignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachers_signup);
 
+        textView = findViewById(R.id.loginPage);
 
         img=findViewById(R.id.imgView);
 
@@ -65,60 +69,106 @@ public class TeachersSignup extends AppCompatActivity {
         department=findViewById(R.id.department);
         ph=findViewById(R.id.ph);
         button=findViewById(R.id.button);
+        browse=findViewById(R.id.browse);
         auth=FirebaseAuth.getInstance();
 
+        browse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        String text_email=email.getText().toString().trim();
-        String text_password=password.getText().toString().trim();
-        String text_name=name.getText().toString().trim();
-        String text_dep=department.getText().toString().trim();
-        String text_ph=ph.getText().toString().trim();
+//                Dexter.withActivity(TeachersSignup.this).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
+//                    @Override
+//                    public void onPermissionGranted(PermissionGrantedResponse response) {
+//                        Intent intent = new Intent();
+//                        intent.setAction(Intent.ACTION_GET_CONTENT);
+//                        intent.setType("image/*");
+//                        startActivityForResult(intent , 1);
+//                    }
+//
+//                    @Override
+//                    public void onPermissionDenied(PermissionDeniedResponse response) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+//                        token.continuePermissionRequest();
+//                    }
+//                }).check();
+
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+            startActivityForResult(intent, 1);
+            }
+        });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text_email=email.getText().toString().trim();
+                String text_password=password.getText().toString().trim();
+                String text_name=name.getText().toString().trim();
+                String text_dep=department.getText().toString().trim();
+                String text_ph=ph.getText().toString().trim();
 
 
-        if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password) || TextUtils.isEmpty(text_name) || TextUtils.isEmpty(text_dep) || TextUtils.isEmpty(text_ph))
-        {
-            Toast.makeText(TeachersSignup.this, "Kindly fill all the fields!", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password) || TextUtils.isEmpty(text_name) || TextUtils.isEmpty(text_dep) || TextUtils.isEmpty(text_ph))
+                {
+                    Toast.makeText(TeachersSignup.this, "Kindly fill all the fields!", Toast.LENGTH_SHORT).show();
 
-        }else if (text_password.length()<6)
-        {
-            Toast.makeText(TeachersSignup.this, "Password must be 8 Charachter", Toast.LENGTH_SHORT).show();
-        }else
-        {
-
-            signupData();
-
-        }
+                }else if (text_password.length()<6)
+                {
+                    Toast.makeText(TeachersSignup.this, "Password must be of 6 characters", Toast.LENGTH_SHORT).show();
+                }else
+                {
 
 
+                    uploadfirebase();
 
+
+                }
+            }
+        });
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TeachersSignup.this, TeachersLogin.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
 
-    private void signupData() {
-
-
-        Dexter.withActivity(TeachersSignup.this).withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new PermissionListener() {
-            @Override
-            public void onPermissionGranted(PermissionGrantedResponse response) {
-                Intent intent=new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent,"select"),1);
-            }
-
-            @Override
-            public void onPermissionDenied(PermissionDeniedResponse response) {
-
-            }
-
-            @Override
-            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-
-                token.continuePermissionRequest();
-            }
-        }).check();
-
-    }
+//    private void signupData() {
+//
+//
+//        Dexter.withActivity(TeachersSignup.this).withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new PermissionListener() {
+//            @Override
+//            public void onPermissionGranted(PermissionGrantedResponse response) {
+//                Intent intent=new Intent(Intent.ACTION_PICK);
+//                intent.setType("image/*");
+//                startActivityForResult(Intent.createChooser(intent,"select"),1);
+//            }
+//
+//            @Override
+//            public void onPermissionDenied(PermissionDeniedResponse response) {
+//
+//            }
+//
+//            @Override
+//            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+//
+//                token.continuePermissionRequest();
+//            }
+//        }).check();
+//
+//
+//
+//
+//    }
 
 
 
@@ -150,8 +200,6 @@ public class TeachersSignup extends AppCompatActivity {
         dialog.setTitle("File Upload");
         dialog.show();
 
-
-
         FirebaseStorage storage=FirebaseStorage.getInstance();
         StorageReference uploader=storage.getReference("Image1"+new Random().nextInt(50));
         uploader.putFile(filepath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -164,7 +212,6 @@ public class TeachersSignup extends AppCompatActivity {
 
                         dialog.dismiss();
 
-
                         String text_email=email.getText().toString().trim();
                         String text_password=password.getText().toString().trim();
                         String text_name=name.getText().toString().trim();
@@ -172,16 +219,14 @@ public class TeachersSignup extends AppCompatActivity {
                         String text_ph=ph.getText().toString().trim();
 
                         FirebaseDatabase db=FirebaseDatabase.getInstance();
-                        DatabaseReference root=db.getReference("signup");
+                        DatabaseReference root=db.getReference("teachers");
                         dataholder  obj=new dataholder(text_name,text_ph,text_dep,text_email,uri.toString());
                         root.child(email.getText().toString()).setValue(obj);
-
 
                         signupuser(text_email,text_password);
 
                     }
                 });
-
 
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -191,7 +236,6 @@ public class TeachersSignup extends AppCompatActivity {
                 dialog.setMessage("uploaded: "+(int)percent+"%");
             }
         });
-
     }
     private void signupuser(String text_email, String text_password) {
 

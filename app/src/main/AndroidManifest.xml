@@ -3,7 +3,8 @@
     package="com.example.projectcytrom">
 
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -47,6 +48,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ExpandedTeachers" />
+        <activity android:name=".TeachersSignup" />
+        <activity android:name=".TeachersLogin" />
     </application>
 
 </manifest>

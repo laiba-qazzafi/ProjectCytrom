@@ -24,21 +24,29 @@
                 android:id="@+id/imgView"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/faculty"
+                android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="100dp"
-                />
+                android:src="@drawable/faculty" />
+
+            <Button
+                android:id="@+id/browse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_toRightOf="@id/imgView"
+                android:text="Browse" />
+
 
             <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/imgView"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
                 android:background="@color/white"
                 android:drawableLeft="@drawable/person"
-                android:layout_below="@id/imgView"
                 android:drawablePadding="10dp"
                 android:drawableTint="@color/gray"
                 android:hint="Enter your Name"

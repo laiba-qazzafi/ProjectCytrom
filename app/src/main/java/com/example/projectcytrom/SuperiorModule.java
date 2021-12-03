@@ -30,6 +30,7 @@ public class SuperiorModule extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SuperiorModule.this, TeachersSignup.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
