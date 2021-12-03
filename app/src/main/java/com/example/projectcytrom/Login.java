@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +25,6 @@ public class Login extends AppCompatActivity {
     private Button bat1;
     private FirebaseAuth auth;
     TextView t;
-    ProgressBar bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +33,7 @@ public class Login extends AppCompatActivity {
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
         bat1=findViewById(R.id.loginButton);
-        bar = (ProgressBar) findViewById(R.id.progressBar);
         auth=FirebaseAuth.getInstance();
-
-
 
         bat1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +53,6 @@ public class Login extends AppCompatActivity {
     }
     public void login()
     {
-        bar.setVisibility(View.VISIBLE);
         String text_email=email.getText().toString();
         String text_password=password.getText().toString();
 
@@ -80,15 +74,12 @@ public class Login extends AppCompatActivity {
 
                 if (!task.isSuccessful())
                 {
-                    bar.setVisibility(View.INVISIBLE);
                     Toast.makeText(Login.this, "Incorrect Email Or Password", Toast.LENGTH_SHORT).show();
                 }else if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
                 {
-                    bar.setVisibility(View.INVISIBLE);
                     Toast.makeText(Login.this, "Field is empty", Toast.LENGTH_SHORT).show();
 
                 }else {
-                    bar.setVisibility(View.INVISIBLE);
                     Toast.makeText(Login.this, "Login SuccessFull", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Login.this, MainActivity2.class);
                     startActivity(intent);

@@ -57,7 +57,11 @@ public class SignUp extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                HashMap<String,Object> m=new HashMap<String,Object>();
+                m.put("name",name.getText().toString());
+                m.put("roll",roll.getText().toString());
+                m.put("section",section.getText().toString());
+                FirebaseDatabase.getInstance().getReference().child("student").setValue(m);
 
                 String text_email=email.getText().toString().trim();
                 String text_password=password.getText().toString().trim();
@@ -65,11 +69,6 @@ public class SignUp extends AppCompatActivity {
                 String text_section=section.getText().toString().trim();
                 String text_roll=roll.getText().toString().trim();
 
-                HashMap<String,Object> m=new HashMap<String,Object>();
-                m.put("name",text_name);
-                m.put("roll",text_roll);
-                m.put("section",text_section);
-                FirebaseDatabase.getInstance().getReference().child("student").child(text_roll).setValue(m);
 
                 if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password) || TextUtils.isEmpty(text_name) || TextUtils.isEmpty(text_roll) || TextUtils.isEmpty(text_section))
                 {
