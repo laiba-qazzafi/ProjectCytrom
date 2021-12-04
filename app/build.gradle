@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.google.firebase:firebase-database:20.0.3'
     implementation 'com.karumi:dexter:6.0.2'
     implementation 'com.squareup.picasso:picasso:2.5.0'
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
