@@ -1,14 +1,11 @@
 package com.example.projectcytrom;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +21,8 @@ public class MainActivity2 extends AppCompatActivity {
             "Mudassir Bajwa",
             "Naeem Raza",
             "Hafiz ALi Ahmed",
-            "Naeem Abbas"
+            "Naeem Abbas",
+            "Test"
             ));
     ArrayList teacherPic= new ArrayList(Arrays.asList(
             R.drawable.sir_ahmad,
@@ -35,7 +33,8 @@ public class MainActivity2 extends AppCompatActivity {
             R.drawable.sir_mudassir,
             R.drawable.sir_naeem_raza,
             R.drawable.sir_ali_ahmed,
-            R.drawable.sir_naeem_abbas
+            R.drawable.sir_naeem_abbas,
+            R.drawable.account
     ));
 
 
